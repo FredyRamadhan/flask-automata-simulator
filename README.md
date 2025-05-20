@@ -1,2 +1,4 @@
-    `pip install flask`
-    `flask run`
+    pip install flask
+--
+    
+    flask run
