@@ -1,13 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
+<lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Program TBA</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
-    <h1>ppppp</h1>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+        <h2 class="text-2xl font-bold mb-6 text-gray-800 text-center">Program TBA</h2>
+
+        <form action="/submit-form" method="POST" class="space-y-4">
+            <div>
+                <label for="options" class="block text-sm font-medium text-gray-700 mb-1">Pilih Fitur</label>
+                <select id="options" name="selected_option"
+                    class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    <option value="" disabled selected>Pilih Fitur</option>
+                    <option value="option1" data-href="https://example.com/page1">Option 1 (Go to Page 1)</option>
+                    <option value="option2" data-href="https://example.com/page2">Option 2 (Go to Page 2)</option>
+                    <option value="option3" data-href="https://example.com/page3">Option 3 (Go to Page 3)</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="input1" class="block text-sm font-medium text-gray-700 mb-1">Input Field 1:</label>
+                <input type="text" id="input1" name="input1" placeholder="Enter input1"
+                    class="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+            </div>
+
+            <div>
+                <label for="input2" class="block text-sm font-medium text-gray-700 mb-1">Input Field 2:</label>
+                <input type="text" id="input2" name="input2" placeholder="Enter input2"
+                    class="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+            </div>
+
+            <div>
+                <button type="submit"
+                    class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    Submit
+                </button>
+            </div>
+        </form>
+    </div>
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
