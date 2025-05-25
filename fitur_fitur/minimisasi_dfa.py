@@ -1,5 +1,3 @@
-# minimisasi_dfa.py
-
 from collections import defaultdict
 
 def minimize_dfa(dfa):
@@ -50,12 +48,10 @@ def minimize_dfa(dfa):
         new_dest = state_mapping[dest_state]
         new_tf[(new_src, symbol)] = new_dest
 
-    minimized_dfa = {
+    return {
         'states': new_states,
         'alphabet': alphabet,
         'start_state': new_start_state,
         'accept_states': new_accept_states,
         'transition_function': new_tf
     }
-
-    return minimized_dfa
