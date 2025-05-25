@@ -22,43 +22,45 @@ if __name__ == "__main__":
 
 
 #Fungsi Inputan Minimsasi DFA
+from flask import Flask, render_template, request
 import ast
 from minimisasi_dfa import minimize_dfa
-from pprint import pprint
+from pprint import pformat
 
-print("=== INPUT DFA UNTUK DIMINIMALKAN ===")
-print("Masukkan semua bagian secara terpisah sesuai instruksi di bawah ini.")
+app = Flask(__name__)
 
-print("\nContoh input:")
-print("  States          : q0,q1,q2")
-print("  Alphabet        : 0,1")
-print("  Start State     : q0")
-print("  Accept States   : q1")
-print("  Transition Fn   : {('q0', '0'): 'q2', ('q0', '1'): 'q1', ('q1', '0'): 'q2', ('q1', '1'): 'q1', ('q2', '0'): 'q2', ('q2', '1'): 'q1'}")
+@app.route("/", methods=["GET", "POST"])
+def index():
+    result = None
+    error = None
 
-states = set(input("\nStates (pisahkan dengan koma): ").replace(" ", "").split(","))
-alphabet = set(input("Alphabet (pisahkan dengan koma): ").replace(" ", "").split(","))
-start_state = input("Start State: ").strip()
-accept_states = set(input("Accept States (pisahkan dengan koma): ").replace(" ", "").split(","))
-tf_raw = input("Transition Function (format dictionary Python): ").strip()
+    if request.method == "POST":
+        try:
+            states = set(request.form["states"].replace(" ", "").split(","))
+            alphabet = set(request.form["alphabet"].replace(" ", "").split(","))
+            start_state = request.form["start_state"].strip()
+            accept_states = set(request.form["accept_states"].replace(" ", "").split(","))
+            tf_raw = request.form["transition_function"]
 
-try:
-    transition_function = ast.literal_eval(tf_raw)
-    if not isinstance(transition_function, dict):
-        raise ValueError
-except Exception:
-    print("❌ Format transition_function salah. Pastikan menggunakan format dictionary Python.")
-    exit(1)
+            transition_function = ast.literal_eval(tf_raw)
+            if not isinstance(transition_function, dict):
+                raise ValueError("Transition function harus dictionary.")
 
-dfa_input = {
-    'states': states,
-    'alphabet': alphabet,
-    'start_state': start_state,
-    'accept_states': accept_states,
-    'transition_function': transition_function
-}
+            dfa = {
+                "states": states,
+                "alphabet": alphabet,
+                "start_state": start_state,
+                "accept_states": accept_states,
+                "transition_function": transition_function
+            }
 
-minimized = minimize_dfa(dfa_input)
+            minimized = minimize_dfa(dfa)
+            result = pformat(minimized)
 
-print("\n=== DFA HASIL MINIMISASI ===")
-pprint(minimized)
+        except Exception as e:
+            error = str(e)
+
+    return render_template("form.html", result=result, error=error)
+
+if __name__ == "__main__":
+    app.run(debug=True)
