@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tes DFA</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+  <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-xl">
+    <h1 style="font-weight: 700; font-size: 30px; text-align: center;">Uji String pada DFA</h1>
+    <form method="POST" action="/tes-dfa" class="space-y-4">
+      <div>
+        <label for="states" class="block text-sm font-medium text-gray-700 mb-1">States (dipisah koma)</label>
+        <input type="text" id="states" name="states" placeholder="q0,q1,q2"
+               class="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm" />
+      </div>
+
+      <div>
+        <label for="alphabet" class="block text-sm font-medium text-gray-700 mb-1">Alphabet (dipisah koma)</label>
+        <input type="text" id="alphabet" name="alphabet" placeholder="0,1"
+               class="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm" />
+      </div>
+
+      <div>
+        <label for="start_state" class="block text-sm font-medium text-gray-700 mb-1">Start State</label>
+        <input type="text" id="start_state" name="start_state" placeholder="q0"
+               class="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm" />
+      </div>
+
+      <div>
+        <label for="accept_states" class="block text-sm font-medium text-gray-700 mb-1">Accept States (dipisah koma)</label>
+        <input type="text" id="accept_states" name="accept_states" placeholder="q1"
+               class="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm" />
+      </div>
+
+      <div>
+        <label for="transition_function" class="block text-sm font-medium text-gray-700 mb-1">Transition Function (format Python dict)</label>
+        <input type="text" id="transition_function" name="transition_function" 
+               placeholder="{('q0','0'):'q1', ('q0','1'):'q2'}"
+               class="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm" />
+      </div>
+
+      <div>
+        <label for="input_string" class="block text-sm font-medium text-gray-700 mb-1">String yang Diuji</label>
+        <input type="text" id="input_string" name="input_string" placeholder="0110"
+               class="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm" />
+      </div>
+
+      <div>
+        <button type="submit"
+                class="w-full py-2 px-4 bg-indigo-600 text-white rounded-md shadow hover:bg-indigo-700">
+          Tes DFA
+        </button>
+      </div>
+    </form>
+
+    {% if log %}
+    <table border="1" cellpadding="8" cellspacing="0">
+        <tr>
+            <th>Symbol</th>
+            <th>From</th>
+            <th>To</th>
+        </tr>
+        {% for entry in log %}
+        <tr>
+            <td>{{ entry[0] }}</td>
+            <td>{{ entry[1] }}</td>
+            <td>{{ entry[2] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+        {% endif %}
+
+        {% if result %}
+            <h3>Acceptences: {{ result }}</h3>
+        {% endif %}
+  </div>
+</body>
+</html>
