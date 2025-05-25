@@ -1,8 +1,10 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 # from fitur_fitur.cek_equivalen import
-# from fitur_fitur.minimisasi_dfa import 
+from fitur_fitur.minimisasi_dfa import minimize_dfa
 # from fitur_fitur.regex_to_nfa import 
 # from fitur_fitur.tes_dfa import 
+import ast
+from pprint import pformat
 
 app = Flask(__name__)
 
@@ -11,24 +13,7 @@ def home():
     return render_template('index.html')
 
 
-
-
-
-
-
-if __name__ == "__main__":
-    app.run(debug=True)
-
-
-# app.py
-from flask import Flask, render_template, request
-import ast
-from minimisasi_dfa import minimize_dfa
-from pprint import pformat
-
-app = Flask(__name__)
-
-@app.route("/", methods=["GET", "POST"])
+@app.route("/minimisasi", methods=["GET", "POST"])
 def index():
     result = None
     error = None
