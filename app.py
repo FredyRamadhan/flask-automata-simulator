@@ -27,18 +27,20 @@ from minimisasi_dfa import minimize_dfa
 from pprint import pprint
 
 print("=== INPUT DFA UNTUK DIMINIMALKAN ===")
-print("Masukkan semua dalam format Python seperti contoh di bawah ini.")
-print("Contoh states        : q0,q1,q2")
-print("Contoh alphabet      : 0,1")
-print("Contoh start state   : q0")
-print("Contoh accept states : q1")
-print("Contoh transition_function:\n  {('q0', '0'): 'q2', ('q0', '1'): 'q1', ('q1', '0'): 'q2', ('q1', '1'): 'q1', ('q2', '0'): 'q2', ('q2', '1'): 'q1'}")
+print("Masukkan semua bagian secara terpisah sesuai instruksi di bawah ini.")
 
-states = set(input("\nStates: ").replace(" ", "").split(","))
-alphabet = set(input("Alphabet: ").replace(" ", "").split(","))
-start_state = input("Start state: ").strip()
-accept_states = set(input("Accept states: ").replace(" ", "").split(","))
-tf_raw = input("Transition function: ").strip()
+print("\nContoh input:")
+print("  States          : q0,q1,q2")
+print("  Alphabet        : 0,1")
+print("  Start State     : q0")
+print("  Accept States   : q1")
+print("  Transition Fn   : {('q0', '0'): 'q2', ('q0', '1'): 'q1', ('q1', '0'): 'q2', ('q1', '1'): 'q1', ('q2', '0'): 'q2', ('q2', '1'): 'q1'}")
+
+states = set(input("\nStates (pisahkan dengan koma): ").replace(" ", "").split(","))
+alphabet = set(input("Alphabet (pisahkan dengan koma): ").replace(" ", "").split(","))
+start_state = input("Start State: ").strip()
+accept_states = set(input("Accept States (pisahkan dengan koma): ").replace(" ", "").split(","))
+tf_raw = input("Transition Function (format dictionary Python): ").strip()
 
 try:
     transition_function = ast.literal_eval(tf_raw)
