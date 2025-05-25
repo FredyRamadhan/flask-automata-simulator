@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Minimisasi DFA</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        label { display: block; margin-top: 10px; font-weight: bold; }
+        input[type=text], textarea { width: 100%; padding: 8px; margin-top: 5px; }
+        input[type=submit] { margin-top: 20px; padding: 10px 20px; font-size: 16px; }
+        .result, .error { margin-top: 20px; padding: 15px; border-radius: 5px; }
+        .result { background: #e0f7fa; }
+        .error { background: #ffcdd2; }
+    </style>
+</head>
+<body>
+    <h1>Minimisasi DFA</h1>
+    <form method="POST">
+        <label for="states">States (contoh: q0,q1,q2)</label>
+        <input type="text" name="states" required>
+
+        <label for="alphabet">Alphabet (contoh: 0,1)</label>
+        <input type="text" name="alphabet" required>
+
+        <label for="start_state">Start State (contoh: q0)</label>
+        <input type="text" name="start_state" required>
+
+        <label for="accept_states">Accept States (contoh: q1)</label>
+        <input type="text" name="accept_states" required>
+
+        <label for="transition_function">Transition Function (contoh: {('q0','0'):'q1', ('q0','1'):'q2'})</label>
+        <textarea name="transition_function" rows="5" required></textarea>
+
+        <input type="submit" value="Minimalkan">
+    </form>
+
+    {% if result %}
+    <div style="background-color: #e8f8fc; padding: 1em; margin-top: 1em;">
+        <h3>Hasil Minimisasi:</h3>
+        <pre>{{ result }}</pre>
+    </div>
+    {% endif %}
+
+
+    {% if error %}
+    <div class="error">
+        <strong>Error:</strong> {{ error }}
+    </div>
+    {% endif %}
+</body>
+</html>
