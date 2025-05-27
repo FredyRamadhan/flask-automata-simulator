@@ -9,6 +9,8 @@ install venv
 
     py -3 -m venv .venv
 
+activate venv
+    
     .venv\Scripts\activate
 
 install flask
