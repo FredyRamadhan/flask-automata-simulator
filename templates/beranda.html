@@ -1,0 +1,35 @@
+{% extends 'index.html' %}
+
+{% block title %}Beranda{% endblock %}
+
+{% block content %}
+
+
+<section class="w-full mx-auto flex justify-center pt-[4rem]">
+    <div class="max-w-[1024px] flex flex-col gap-6 bg-charcoal text-cloud p-8 rounded-3xl">
+            <article class="">
+                <h1 class="font-bold text-2xl">Finite Automata</h1>
+                <p class="mt-2">Silahkan pilih fitur yang tersedia</p>
+            </article>
+            <div class="md:grid grid-cols-2 grid-rows-2 gap-2 flex flex-col">
+                <a href="/uji-dfa" class="p-6 flex flex-col bg-charcoal-darker gap-12 rounded-lg w-full hover:bg-orange hover:text-charcoal-darker active:bg-charcoal-lighter transition duration-300 ease-out">
+                    <p class="font-bold text-lg">Uji DFA</p>
+                    <p class="text-sm">Pengguna dapat memasukkan DFA kemudian mengetes DFA tersebut dengan memasukkan string.</p>
+                </a>
+                <a href="/regex-to-nfa" class="p-6 flex flex-col bg-charcoal-darker gap-12 rounded-lg w-full hover:bg-orange hover:text-charcoal-darker active:bg-charcoal-lighter transition duration-300 ease-out">
+                    <p class="font-bold text-lg">Konversi Regex-NFA</p>
+                    <p class="text-sm">Mengkonversi Regex yang dimasukkan menjadi NFA kemudian pengguna dapat mengetesnya.</p>
+                </a>
+                <a href="minimisasi" class="p-6 flex flex-col bg-charcoal-darker gap-12 rounded-lg w-full hover:bg-orange hover:text-charcoal-darker active:bg-charcoal-lighter transition duration-300 ease-out">
+                    <p class="font-bold text-lg">Minimisasi DFA</p>
+                    <p class="text-sm">Meminimisasi DFA yang dimasukkan oleh pengguna.</p>
+                </a>
+                <a href="cek-ekuivalen" class="p-6 flex flex-col bg-charcoal-darker gap-12 rounded-lg w-full hover:bg-orange hover:text-charcoal-darker active:bg-charcoal-lighter transition duration-300 ease-out">
+                    <p class="font-bold text-lg">Cek Ekuivalensi</p>
+                    <p class="text-sm">Menerima dua buah DFA kemudian mengecek apakah keduanya ekuivalen.</p>
+                </a>
+            </div>
+        </div>
+    </section>
+    
+{% endblock %}

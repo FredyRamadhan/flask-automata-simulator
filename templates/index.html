@@ -3,46 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Program TBA</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <title>{% block title %}Index{% endblock %}</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+                colors: {
+                    cloud: '#D3D0DE',
+                    orange: '#FF5B05',
+                    charcoal: {
+                        darker: '#1b2328',
+                        DEFAULT: '#243037',
+                        lighter: '#3b4a52',
+                    },
+                    aqua: '#075056',
+                },
+            }
+          }
+        }
+      </script>
 </head>
-<body class="bg-gray-100 flex items-center justify-center min-h-screen">
-    <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
-        <h2 class="text-2xl font-bold mb-6 text-gray-800 text-center">Program TBA</h2>
-
-        <form action="/submit-form" method="POST" class="space-y-4">
-            <div>
-                <label for="options" class="block text-sm font-medium text-gray-700 mb-1">Pilih Fitur</label>
-                <select id="options" name="selected_option"
-                    class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                    <option value="" disabled selected>Pilih Fitur</option>
-                    <option value="option1" data-href="https://example.com/page1">Option 1 (Go to Page 1)</option>
-                    <option value="option2" data-href="https://example.com/page2">Option 2 (Go to Page 2)</option>
-                    <option value="option3" data-href="https://example.com/page3">Option 3 (Go to Page 3)</option>
-                </select>
+<body class="bg-cloud text-light2 min-h-screen px-4 lg:px-2">
+    <nav class="bg-cloud p-9 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center flex-wrap">
+            <a href="/" class="text-charcoal text-xl font-bold">
+                Simulasi Finite Automata
+            </a>
+    
+            <button id="mobile-menu-button" class="text-charcoal-darker md:hidden focus:outline-none focus:ring-2 focus:ring-charcoal">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+    
+            <div id="navigation-links" class="hidden md:flex flex-col md:flex-row w-full md:w-auto mt-4 md:mt-0 space-y-2 md:space-y-0 md:space-x-6">
+                <div>
+                    <a href="/" class="text-charcoal hover:text-orange text-lg font-medium transition duration-300 ease-in-out w-full text-center">
+                        Beranda
+                    </a>
+                </div>
+                <div>
+                    <a href="/tentang" class="text-charcoal hover:text-orange text-lg font-medium transition duration-300 ease-in-out w-full text-center">
+                        Tentang
+                    </a>
+                </div>
             </div>
+        </div>
+    </nav>
+      
+        {% block content %}
+        {% endblock %}    
 
-            <div>
-                <label for="input1" class="block text-sm font-medium text-gray-700 mb-1">Input Field 1:</label>
-                <input type="text" id="input1" name="input1" placeholder="Enter input1"
-                    class="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-            </div>
-
-            <div>
-                <label for="input2" class="block text-sm font-medium text-gray-700 mb-1">Input Field 2:</label>
-                <input type="text" id="input2" name="input2" placeholder="Enter input2"
-                    class="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-            </div>
-
-            <div>
-                <button type="submit"
-                    class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                    Submit
-                </button>
-            </div>
-        </form>
-    </div>
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <br><br><br>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const navigationLinks = document.getElementById('navigation-links');
+            mobileMenuButton.addEventListener('click', () => {
+                navigationLinks.classList.toggle('hidden');
+            });
+        });
+    </script>
 </body>
 </html>

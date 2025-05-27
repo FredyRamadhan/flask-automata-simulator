@@ -10,17 +10,17 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return render_template('index.html')
+    return render_template('beranda.html')
 
-@app.route("/submit-form", methods=["POST"])
-def submit_form():
-    selected_option = request.form.get("selected_option")
-    if selected_option:
-        # Redirect ke route sesuai pilihan di dropdown
-        return redirect(selected_option)
-    return redirect(url_for('home'))
+# @app.route("/submit-form", methods=["POST"])
+# def submit_form():
+#     selected_option = request.form.get("selected_option")
+#     if selected_option:
+#         # Redirect ke route sesuai pilihan di dropdown
+#         return redirect(selected_option)
+#     return redirect(url_for('home'))
 
-@app.route("/minimisasi-dfa", methods=["GET", "POST"])
+@app.route("/minimisasi", methods=["GET", "POST"])
 def index():
     result = None
     error = None
@@ -51,13 +51,13 @@ def index():
         except Exception as e:
             error = str(e)
 
-    return render_template("form.html", result=result, error=error)
+    return render_template("minimisasi.html", result=result, error=error)
 
 # @app.route('/')
 # def index():
 #     return render_template('index.html')
 
-@app.route("/tes-dfa", methods=["GET", "POST"])
+@app.route("/uji-dfa", methods=["GET", "POST"])
 def tes_dfa_page():
     result = None
     log = []
@@ -95,6 +95,11 @@ def tes_dfa_page():
     return render_template("uji_dfa.html", result=result, log=log)
 
 
+
+@app.errorhandler(404)
+def page_not_found(error):
+    app.logger.error(f"404 Not Found: {request.url}")
+    return render_template('404.html', error_message=error.description), 404
 
 if __name__ == "__main__":
     app.run(debug=True)

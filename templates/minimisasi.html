@@ -1,0 +1,68 @@
+{% extends 'index.html' %}
+
+{% block title %}Minimisasi DFA{% endblock %}
+
+{% block content %}
+
+
+<section class="w-full flex justify-center pt-16">
+    <div class="max-w-[1024px] flex flex-col gap-6 bg-charcoal text-cloud p-8 rounded-3xl w-full">
+      
+      <article>
+        <h1 class="font-bold text-2xl">Minimisasi DFA</h1>
+        <p class="mt-2 text-cloud/90">Masukkan detail DFA untuk dilakukan proses minimisasi.</p>
+      </article>
+  
+      <form method="POST" class="space-y-6">
+        <div>
+          <label for="states" class="block font-semibold mb-1">States (contoh: q0,q1,q2)</label>
+          <input type="text" name="states" required
+            class="w-full px-4 py-2 border border-charcoal-lighter rounded-md bg-charcoal-lighter text-cloud focus:ring-2 focus:ring-cloud focus:outline-none placeholder:text-cloud/60">
+        </div>
+  
+        <div>
+          <label for="alphabet" class="block font-semibold mb-1">Alphabet (contoh: 0,1)</label>
+          <input type="text" name="alphabet" required
+            class="w-full px-4 py-2 border border-charcoal-lighter rounded-md bg-charcoal-lighter text-cloud focus:ring-2 focus:ring-cloud focus:outline-none placeholder:text-cloud/60">
+        </div>
+  
+        <div>
+          <label for="start_state" class="block font-semibold mb-1">Start State (contoh: q0)</label>
+          <input type="text" name="start_state" required
+            class="w-full px-4 py-2 border border-charcoal-lighter rounded-md bg-charcoal-lighter text-cloud focus:ring-2 focus:ring-cloud focus:outline-none placeholder:text-cloud/60">
+        </div>
+  
+        <div>
+          <label for="accept_states" class="block font-semibold mb-1">Accept States (contoh: q1)</label>
+          <input type="text" name="accept_states" required
+            class="w-full px-4 py-2 border border-charcoal-lighter rounded-md bg-charcoal-lighter text-cloud focus:ring-2 focus:ring-cloud focus:outline-none placeholder:text-cloud/60">
+        </div>
+  
+        <div>
+          <label for="transition_function" class="block font-semibold mb-1">Transition Function</label>
+          <p class="text-sm text-cloud/80">(contoh: {('q0','0'):'q1', ('q0','1'):'q2'})</p>
+          <textarea name="transition_function" rows="5" required
+            class="w-full mt-1 px-4 py-2 border border-charcoal-lighter rounded-md bg-charcoal-lighter text-cloud focus:ring-2 focus:ring-cloud focus:outline-none resize-none placeholder:text-cloud/60"></textarea>
+        </div>
+  
+        <div>
+          <input type="submit" value="Minimalkan"
+            class="bg-orange text-charcoal-darker px-6 py-2 rounded-lg font-semibold hover:bg-orange/90 transition">
+        </div>
+      </form>
+  
+      {% if result %}
+      <div class="bg-cloud text-charcoal border border-aqua rounded-lg p-4">
+        <h3 class="font-semibold mb-2">Hasil Minimisasi:</h3>
+        <pre class="whitespace-pre-wrap">{{ result }}</pre>
+      </div>
+      {% endif %}
+  
+      {% if error %}
+      <div class="bg-orange text-white rounded-lg p-4">
+        <strong>Error:</strong> {{ error }}
+      </div>
+      {% endif %}
+    </div>
+  </section>
+  {% endblock %}
