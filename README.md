@@ -1,4 +1,19 @@
-    pip install flask
---
+## Program Finite Automata Sederhana
+
+clone
+
+    `git clone https://github.com/FredyRamadhan/flask-program-tba`
+
+install venv
+
+    `py -3 -m venv .venv`
+
+    `.venv\Scripts\activate`
+
+install flask
     
-    flask run
+    `pip install flask`
+
+Run program
+
+    `flask run`
