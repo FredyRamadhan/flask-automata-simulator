@@ -4,19 +4,21 @@
 
 {% block content %}
 <section class="w-full flex justify-center pt-24">
-  <div class="bg-charcoal text-cloud p-8 rounded-3xl shadow-lg max-w-md w-full text-center space-y-4">
+  <div class="bg-charcoal flex flex-col gap-4 text-cloud p-8 rounded-3xl max-w-md shadow-2xl w-full text-center space-y-4">
     
-    <h1 class="text-6xl font-extrabold text-orange">404</h1>
-    <h2 class="text-2xl font-semibold">Halaman Tidak Ditemukan</h2>
-    <p class="text-cloud/80 text-base">
-      Halaman yang Anda cari mungkin telah dihapus, namanya diubah, atau sementara tidak tersedia.
-    </p>
+    <h1 class="text-8xl font-extrabold text-orange">404</h1>
+    <article>
+        <h2 class="text-2xl font-semibold">Halaman Tidak Ditemukan</h2>
+        <p class="text-cloud/80 mt-2 text-base">
+          Halaman yang Anda cari mungkin telah dihapus, namanya diubah, atau sementara tidak tersedia.
+        </p>
+    </article>
 
     {% if error_message %}
     <p class="text-sm text-cloud/70">Detail Kesalahan: {{ error_message }}</p>
     {% endif %}
 
-    <a href="/" class="inline-block bg-orange hover:bg-orange/90 text-charcoal-darker font-semibold py-2 px-6 rounded-lg transition duration-300">
+    <a href="/" class="inline-block bg-orange hover:bg-orange/60 text-charcoal-darker font-semibold py-2 px-6 rounded-lg transition duration-400 ease-in-out">
       Kembali ke Beranda
     </a>
     

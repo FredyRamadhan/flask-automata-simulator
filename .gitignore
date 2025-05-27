@@ -17,3 +17,5 @@ instance/
 .flaskenv
 
 *.log
+
+test.html
