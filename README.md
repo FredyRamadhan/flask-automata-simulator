@@ -1,19 +1,20 @@
 ## Program Finite Automata Sederhana
 
+
 clone
 
-    `git clone https://github.com/FredyRamadhan/flask-program-tba`
+    git clone https://github.com/FredyRamadhan/flask-program-tba
 
 install venv
 
-    `py -3 -m venv .venv`
+    py -3 -m venv .venv
 
-    `.venv\Scripts\activate`
+    .venv\Scripts\activate
 
 install flask
     
-    `pip install flask`
+    pip install flask
 
 Run program
 
-    `flask run`
+    flask run
