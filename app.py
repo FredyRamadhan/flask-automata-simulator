@@ -53,10 +53,6 @@ def index():
 
     return render_template("minimisasi.html", result=result, error=error)
 
-# @app.route('/')
-# def index():
-#     return render_template('index.html')
-
 @app.route("/uji-dfa", methods=["GET", "POST"])
 def tes_dfa_page():
     result = None
@@ -93,8 +89,6 @@ def tes_dfa_page():
             result = f"Error: {str(e)}"
 
     return render_template("uji_dfa.html", result=result, log=log)
-
-
 
 @app.errorhandler(404)
 def page_not_found(error):
