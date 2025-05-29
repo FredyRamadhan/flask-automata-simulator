@@ -1,0 +1,51 @@
+{% extends 'index.html' %}
+
+{% block title %}Regex to NFA{% endblock %}
+
+{% block content %}
+<section class="w-full flex pt-16">
+    <div class="max-w-[1024px] mx-auto flex flex-col gap-6 bg-charcoal text-cloud shadow-2xl p-8 rounded-3xl w-full">
+      
+      <article>
+        <h1 class="font-bold text-2xl ">Konversi Regex ke NFA</h1>
+        <p class="mt-2 text-cloud/90 ">Masukkan Regex dan String untuk Diuji.</p>
+      </article>
+  
+      <form method="POST" action="/regex-to-nfa" class="space-y-6 mt-4">
+        <div>
+          <label for="regex" class="block font-semibold mb-4">Masukkan Regex (a, b, |, *, ()) <br>
+            Contoh: (a|b)*abb
+            </label>
+          <input type="text" id="regex" name="regex" placeholder="(a|b)*abb"
+            class="w-full px-4 py-2 border border-charcoal-lighter rounded-md bg-charcoal-lighter text-cloud placeholder:text-cloud/60 focus:ring-2 focus:ring-cloud focus:outline-none">
+        </div>
+        <div>
+          <label for="string" class="block font-semibold mb-4">Masukkan String untuk Diuji <br>
+            Contoh: aababb
+            </label>
+          <input type="text" id="string" name="string" placeholder="aababb"
+            class="w-full px-4 py-2 border border-charcoal-lighter rounded-md bg-charcoal-lighter text-cloud placeholder:text-cloud/60 focus:ring-2 focus:ring-cloud focus:outline-none">
+        </div>
+        <div>
+          <button type="submit"
+            class="w-full py-2 px-4 bg-orange text-charcoal-darker rounded-lg font-semibold hover:bg-orange/90 transition">
+            Konversi ke NFA
+          </button>
+        </div>
+      </form>
+  
+    {% if acc %}
+    <div class="bg-cloud text-charcoal border border-aqua rounded-lg p-4 mt-6">
+        <h3 class="font-semibold">String Diterima: {{ acc }}</h3>
+    </div>
+    {% endif %}
+    {% if diag %}
+    <div class="bg-cloud text-charcoal border border-aqua rounded-lg p-4">
+        <h3 class="*:text-center font-semibold mb-2">NFA:</h3>
+            <pre class="mb-3">{{ nfa }}</pre>
+            <pre class="mermaid">{{ diag | safe }}</pre>
+          </div>
+      {% endif %}
+    </div>
+  </section>
+{% endblock %}

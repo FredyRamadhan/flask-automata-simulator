@@ -62,8 +62,9 @@
       
       
       {% if result %}
-        <div class="bg-cloud text-charcoal border border-aqua rounded-lg p-4">
+        <div class=" bg-cloud text-charcoal border border-aqua rounded-lg p-4">
           <h3 class="font-semibold mb-2">Hasil Minimisasi:</h3>
+          <pre class="mb-3">{{ mdfa }}</pre>
           <pre class="mermaid">{{ result | safe }}</pre>
         </div>
       {% endif %}

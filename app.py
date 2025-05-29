@@ -1,9 +1,10 @@
 from flask import Flask, render_template, redirect, request, url_for
 from fitur_fitur.cek_equivalen import are_equivalent_dfas
 from fitur_fitur.minimisasi_dfa import minimize_dfa
-# from fitur_fitur.regex_to_nfa import 
+from fitur_fitur.regex_to_nfa import test_regex_with_string
 from fitur_fitur.tes_dfa import run_dfa
 from fitur_fitur.dfa_to_diagram import dfa_to_diagram
+from fitur_fitur.nfa_to_diagram import nfa_to_mermaid
 import ast
 from pprint import pformat
 
@@ -17,6 +18,7 @@ def home():
 def index():
     result = None
     error = None
+    mdfa = None
 
     if request.method == "POST":
         try:
@@ -40,11 +42,12 @@ def index():
 
             minimized = minimize_dfa(dfa)
             result = dfa_to_diagram(minimized)
+            mdfa = pformat(minimized)
 
         except Exception as e:
             error = str(e)
 
-    return render_template("minimisasi.html", result=result, error=error)
+    return render_template("minimisasi.html", result=result, error=error, mdfa=mdfa)
 
 @app.route("/uji-dfa", methods=["GET", "POST"])
 def tes_dfa_page():
@@ -136,6 +139,32 @@ def cek_ekuivalen():
             result = f"Error: {str(e)}"
 
     return render_template("cek_ekuivalen.html", result=result, diag=diag, diag2=diag2)
+
+@app.route('/regex-to-nfa', methods=["GET", "POST"])
+def regex_nfa():
+    result = None
+    diag = None
+    acc = None
+    nfa = None
+    pretty = None
+    if request.method == "POST":
+        try:
+            regex = request.form["regex"].strip()
+            input_string = request.form["string"]
+            result = test_regex_with_string(regex, input_string)
+
+            nfa = result["nfa"]
+            acc = pformat(result["accepted"])
+            diag = nfa_to_mermaid(nfa)
+            pretty = pformat(nfa)
+        except Exception as e:
+            acc = f"Error: {str(e)}"
+
+    return render_template("regex_to_nfa.html", acc=acc, diag=diag, nfa=pretty)
+
+@app.route('/tentang')
+def about():
+    return render_template('tentang.html')
 
 
 @app.errorhandler(404)

@@ -1,0 +1,35 @@
+{% extends 'index.html' %}
+
+{% block title %}Tentang Kami{% endblock %}
+
+{% block content %}
+
+<section class="w-full mx-auto flex justify-center pt-[4rem]">
+    <div class="max-w-[1024px] flex flex-col gap-6 bg-charcoal text-cloud shadow-2xl p-8 rounded-3xl">
+        
+        <article>
+            <h1 class="font-bold text-2xl">Tentang Aplikasi</h1>
+            <p class="mt-2 text-cloud/90">
+                Aplikasi ini dibuat untuk membantu pembelajaran tentang Finite Automata, termasuk Regex ke NFA, minimisasi DFA, dan pengujian string pada DFA.
+            </p>
+        </article>
+
+        <article>
+            <h2 class="font-semibold text-xl mt-4">Dibuat oleh:</h2>
+            <ul class="mt-3 space-y-2 text-orange/90 ">
+                <li>- <span class="font-semibold text-cloud ">CLEMENTINE DWAYANI DANITASARI </span>(L0123041)</li>
+                <li>- <span class="font-semibold text-cloud ">CORNELIUS FELIX PAMUNGKAS </span>(L0123042)</li>
+                <li>- <span class="font-semibold text-cloud ">FAIZ AZRAF </span>(L0123050)</li>
+                <li>- <span class="font-semibold text-cloud ">FREDY TRI RAMADHAN </span>(L0123057)</li>
+                <li>- <span class="font-semibold text-cloud ">AFIF OKTAVIAN SYAH PUTRA </span>(M0519008)</li>
+            </ul>
+        </article>
+
+        <p class="text-sm mt-8 text-cloud/70">
+            © 2025 Finite Automata App - Dibuat sebagai bagian dari proyek tugas akhir mata kuliah Teori Bahasa dan Automata.
+        </p>
+
+    </div>
+</section>
+
+{% endblock %}
