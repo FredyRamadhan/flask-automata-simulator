@@ -1,0 +1,125 @@
+{% extends 'index.html' %}
+
+{% block title %}Cek Ekuivalensi{% endblock %}
+
+{% block content %}
+
+<section class="w-full flex justify-center pt-16">
+    <div class="max-w-[1024px] flex flex-col gap-6 bg-charcoal text-cloud shadow-2xl p-8 rounded-3xl w-full">
+        <article>
+            <h1 class="font-bold text-2xl">Cek Ekuivalensi DFA</h1>
+            <p class="mt-2 text-cloud/90">Masukkan detail DFA untuk dilakukan proses minimisasi.</p>
+        </article>
+        <div>
+            <form method="POST" class="space-y-6">
+                <div class="flex flex-col md:flex-row gap-4 justify-between *:flex-1">
+                    <div class="*:mb-2">
+                        <h1 class="font-bold text-xl mb-3">DFA 1</h1>
+                        <div>
+                            <label for="states" class="block font-semibold mb-1">States, Contoh: q0,q1</label>
+                            <input type="text" name="states" required
+                            class="w-full px-4 py-2 border border-charcoal-lighter rounded-md bg-charcoal-lighter text-cloud focus:ring-2 focus:ring-cloud focus:outline-none placeholder:text-cloud/60">
+                        </div>
+                    
+                        <div>
+                            <label for="alphabet" class="block font-semibold mb-1">Alphabet, Contoh: a,b</label>
+                            <input type="text" name="alphabet" required
+                            class="w-full px-4 py-2 border border-charcoal-lighter rounded-md bg-charcoal-lighter text-cloud focus:ring-2 focus:ring-cloud focus:outline-none placeholder:text-cloud/60">
+                        </div>
+                    
+                        <div>
+                            <label for="start_state" class="block font-semibold mb-1">Start State, Contoh: q0</label>
+                            <input type="text" name="start_state" required
+                            class="w-full px-4 py-2 border border-charcoal-lighter rounded-md bg-charcoal-lighter text-cloud focus:ring-2 focus:ring-cloud focus:outline-none placeholder:text-cloud/60">
+                        </div>
+                    
+                        <div>
+                            <label for="accept_states" class="block font-semibold mb-1">Accept States, Contoh: q1</label>
+                            <input type="text" name="accept_states" required
+                            class="w-full px-4 py-2 border border-charcoal-lighter rounded-md bg-charcoal-lighter text-cloud focus:ring-2 focus:ring-cloud focus:outline-none placeholder:text-cloud/60">
+                        </div>
+                        <div>
+                            <label for="transition_function" class="block font-semibold mb-1">Transition Function</label>
+                            <p class="text-sm text-cloud/80">Contoh: <br>{ 
+                                ('q0', 'a'): 'q1',<br>
+                                ('q0', 'b'): 'q0',<br>
+                                ('q1', 'a'): 'q1',<br>
+                                ('q1', 'b'): 'q0' }</p>
+                            <textarea name="transition_function" rows="5" required class="w-full mt-1 px-4 py-2 border border-charcoal-lighter rounded-md bg-charcoal-lighter text-cloud focus:ring-2 focus:ring-cloud focus:outline-none resize-none placeholder:text-cloud/60"></textarea>
+                        </div>
+                    </div>
+                    <div>
+                        <h1 class="font-bold text-xl mb-3">DFA 2</h1>
+                        <div>
+                            <label for="states_2" class="block font-semibold mb-1">States, Contoh: s0,s1</label>
+                            <input type="text" name="states_2" required
+                            class="w-full px-4 py-2 border border-charcoal-lighter rounded-md bg-charcoal-lighter text-cloud focus:ring-2 focus:ring-cloud focus:outline-none placeholder:text-cloud/60">
+                        </div>
+                    
+                        <div>
+                            <label for="alphabet_2" class="block font-semibold mb-1">Alphabet, Contoh: a,b</label>
+                            <input type="text" name="alphabet_2" required
+                            class="w-full px-4 py-2 border border-charcoal-lighter rounded-md bg-charcoal-lighter text-cloud focus:ring-2 focus:ring-cloud focus:outline-none placeholder:text-cloud/60">
+                        </div>
+                    
+                        <div>
+                            <label for="start_state_2" class="block font-semibold mb-1">Start State, Contoh: s0</label>
+                            <input type="text" name="start_state_2" required
+                            class="w-full px-4 py-2 border border-charcoal-lighter rounded-md bg-charcoal-lighter text-cloud focus:ring-2 focus:ring-cloud focus:outline-none placeholder:text-cloud/60">
+                        </div>
+                    
+                        <div>
+                            <label for="accept_states-2" class="block font-semibold mb-1">Accept States, Contoh: s1</label>
+                            <input type="text" name="accept_states-2" required
+                            class="w-full px-4 py-2 border border-charcoal-lighter rounded-md bg-charcoal-lighter text-cloud focus:ring-2 focus:ring-cloud focus:outline-none placeholder:text-cloud/60">
+                        </div>
+                        <div>
+                            <label for="transition_function_2" class="block font-semibold mb-1">Transition Function</label>
+                            <p class="text-sm text-cloud/80">Contoh: <br>{ 
+                                ('s0', 'a'): 's0',<br>
+                                ('s0', 'b'): 's1',<br>
+                                ('s1', 'a'): 's0',<br>
+                                ('s1', 'b'): 's1' }</p>
+                            <textarea name="transition_function_2" rows="5" required class="w-full mt-1 px-4 py-2 border border-charcoal-lighter rounded-md bg-charcoal-lighter text-cloud focus:ring-2 focus:ring-cloud focus:outline-none resize-none placeholder:text-cloud/60"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex justify-end">
+                    <input type="submit" value="Cek Ekuivalensi" class="bg-orange text-charcoal-darker px-6 py-2 rounded-lg font-semibold hover:bg-orange/90 transition">
+                </div>
+            </form>
+        </div>
+    <div class="">
+    {% if result %}
+        <h3 class="font-semibold text-2xl mb-2">Ekuivalen? {{ result }}</h3>
+    {% endif %}
+    </div>
+    
+
+    {% if diag %}
+    <div class="bg-aqua *:bg-cloud text-charcoal border border-aqua rounded-lg p-4 flex flex-col lg:flex-row gap-4 *:flex-1 justify-between">
+        <div class="flex flex-col gap-4 shadow-2xl p-4 rounded-lg">
+            <p>DFA 1: </p>
+            <div class="mermaid">
+                {{ diag | safe }}
+            </div>
+        </div>
+            {% if diag2 %}
+            <div class="flex flex-col gap-4 shadow-2xl p-4 rounded-lg">
+                <p>DFA 2: </p>
+                <div class="mermaid">
+                    {{ diag2 | safe }}
+                </div>
+            </div>
+            {% endif %}
+        {% endif %}
+    </div>
+
+    {% if error %}
+      <div class="bg-orange text-white rounded-lg p-4">
+        <strong>Error:</strong> {{ error }}
+      </div>
+    {% endif %}
+    </div>
+</section>  
+{% endblock %}
